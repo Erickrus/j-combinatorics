@@ -1,0 +1,42 @@
+//------------------------------------------------------------
+// This is another implementation of Permutation
+// which is based on the swap function:
+//
+// 1) This implementation requires a function call
+// by reference for the given list[]
+//
+// 2) This implementation is also a recursive one
+//
+// http://dongxicheng.org/structure/permutation-combination/
+//------------------------------------------------------------
+
+var n = 0;
+var finalResult = new Array();
+var list = [];
+
+function swap(a,b) {
+   var m = 0;
+   m = list[a];
+   list[a] = list[b];
+   list[b] = m;
+}
+
+function perm(k, m) {
+   if (k>m) {
+      var temp = list.slice();
+      finalResult.push(temp);
+      n++;
+   } else {
+      for( var i=k;i<=m;i++) {
+         swap(k, i);
+         perm(k+1, m);
+         swap(k, i);
+      }
+   }
+}
+
+function main() {
+   list = [1, 2, 3, 4, 5];
+   perm(0, 4);
+   alert(finalResult.length);
+}
